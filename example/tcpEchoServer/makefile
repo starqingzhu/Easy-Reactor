@@ -6,8 +6,9 @@ LIB=-L../../lib -lereactor -lpthread /usr/lib/libprotobuf.a -lrt
 OBJS = $(addsuffix .o, $(basename $(wildcard *.cc)))
 
 all:
+	protoc --cpp_out=. echoMsg.proto
 	$(CXX) -o server.prog $(CFLAGS) server.cc echoMsg.pb.cc $(INC) $(LIB)
 	$(CXX) -o client.prog $(CFLAGS) client.cc echoMsg.pb.cc $(INC) $(LIB)
 
 clean:
-	-rm -f *.o *.d server client
+	rm -f *.o *.d server.prog client.prog  *.pb.*

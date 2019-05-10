@@ -65,6 +65,11 @@ void* domain(void* args)
 
 int main(int argc, char** argv)
 {
+    if(argc != 2)
+    {
+        cout<<"useage: ./client.prog threadNum"<<endl;
+        return 0;
+    }
     int threadNum = atoi(argv[1]);
     pthread_t *tids;
     tids = new pthread_t[threadNum];
